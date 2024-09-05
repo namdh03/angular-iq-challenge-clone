@@ -1,0 +1,9 @@
+<form [formGroup]="loginForm" (ngSubmit)="loginForm.valid && submit()">
+  <label for="">Username</label>
+  <input matInput type="text" formControlName="username" />
+
+  <label for="">Password</label>
+  <input matInput type="password" formControlName="password" />
+
+  <button mat-flat-button type="submit">Login</button>
+</form>

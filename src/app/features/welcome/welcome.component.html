@@ -1,0 +1,9 @@
+<p>welcome work!</p>
+@if (vm$ | async; as vm) {
+  @if (vm.user) {
+    <p>Hello, {{ vm.user.id }}</p>
+  } @else {
+    <p>{{ vm.userError?.error.message }}</p>
+    <a routerLink="/login">Login</a>
+  }
+}
