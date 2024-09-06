@@ -1,0 +1,11 @@
+.logo-wrapper {
+  display: flex;
+  gap: 1.5px;
+  align-items: center;
+}
+
+.logo-text {
+  color: var(--text-medium-color);
+  font-size: 1.8rem;
+  font-weight: 500;
+}

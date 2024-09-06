@@ -6,11 +6,12 @@ import { combineLatest } from 'rxjs';
 import { AuthFacade } from '~core/auth/store/auth.facade';
 import { LoaderBellComponent } from '~shared/components/loader-bell/loader-bell.component';
 import { LoaderSpinnerComponent } from '~shared/components/loader-spinner/loader-spinner.component';
+import { LogoComponent } from '~shared/components/logo/logo.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, AsyncPipe, LoaderSpinnerComponent, LoaderBellComponent],
+  imports: [ReactiveFormsModule, AsyncPipe, LoaderSpinnerComponent, LoaderBellComponent, LogoComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })

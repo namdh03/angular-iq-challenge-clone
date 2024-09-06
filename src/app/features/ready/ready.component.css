@@ -1,0 +1,45 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 136px;
+  height: 100%;
+}
+
+.ready-img {
+  --size: 492px;
+  width: var(--size);
+  height: var(--size);
+}
+
+.content-wrapper {
+  width: 434px;
+}
+
+.ready-title {
+  margin-top: 26px;
+}
+
+.ready-challenge {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 45px;
+}
+
+.ready-challenge-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.ready-challenge-item span {
+  color: var(--text-light-color);
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.ready-btn {
+  margin-top: 47px;
+  padding: 0 50px;
+}

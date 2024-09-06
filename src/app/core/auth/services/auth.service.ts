@@ -31,7 +31,7 @@ export class AuthService {
   // private readonly hostUrl = this.configService.getAPIUrl();
   // private readonly clientId = this.configService.getAuthSettings().clientId;
   // private readonly clientSecret = this.configService.getAuthSettings().secretId;
-  private readonly hostUrl = 'https://api-gateway.iq.hdang09.tech';
+  private readonly hostUrl = 'https://api-gateway-iq.hdang09.tech';
 
   /**
    * Returns a promise that waits until
@@ -71,10 +71,17 @@ export class AuthService {
    *
    * @returns {Observable<AuthUser>}
    */
+  // getAuthUser(): Observable<AuthUser> {
+  //   return this.httpClient.post<AuthUser>(`${this.hostUrl}/user/me`)
+  // }
+
   getAuthUser(): Observable<AuthUser> {
     const name = this.localStorageService.getItem('name');
     const studentID = this.localStorageService.getItem('studentID');
-    return this.httpClient.get<AuthUser>(`${this.hostUrl}/user/start/${name}/${studentID}`);
+    return this.httpClient.post<AuthUser>(`${this.hostUrl}/user/register`, {
+      name,
+      studentID,
+    });
   }
 
   /**
