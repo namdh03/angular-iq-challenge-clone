@@ -1,12 +1,16 @@
+import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { combineLatest } from 'rxjs';
 
 import { AuthFacade } from '~core/auth/store/auth.facade';
+import { LoaderBellComponent } from '~shared/components/loader-bell/loader-bell.component';
+import { LoaderSpinnerComponent } from '~shared/components/loader-spinner/loader-spinner.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, AsyncPipe, LoaderSpinnerComponent, LoaderBellComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -14,18 +18,24 @@ export class LoginComponent {
   private readonly authFacade = inject(AuthFacade);
 
   readonly loginForm = new FormGroup({
-    username: new FormControl('emilys', {
+    name: new FormControl('', {
       validators: [Validators.required],
       nonNullable: true,
     }),
-    password: new FormControl('emilyspass', {
+    studentId: new FormControl('', {
       validators: [Validators.required],
       nonNullable: true,
     }),
   });
 
+  vm$ = combineLatest({
+    isLoginLoading: this.authFacade.isLoginLoading$,
+    isUserLoading: this.authFacade.isUserLoading$,
+  });
+
   submit() {
-    const { username, password } = this.loginForm.value;
-    this.authFacade.login(username as string, password as string);
+    if (this.loginForm.invalid) return;
+    const { name, studentId } = this.loginForm.value;
+    this.authFacade.login(name as string, studentId as string);
   }
 }

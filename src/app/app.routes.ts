@@ -27,14 +27,17 @@ export const routes: Routes = [
   },
   {
     path: config.routes.challenge,
+    canMatch: [authGuard],
     loadComponent: () => import('./features/challenge/challenge.component').then((mod) => mod.ChallengeComponent),
   },
   {
     path: config.routes.result,
+    canMatch: [authGuard],
     loadComponent: () => import('./features/result/result.component').then((mod) => mod.ResultComponent),
   },
   {
     path: config.routes.scoreboard,
+    canMatch: [authGuard],
     loadComponent: () => import('./features/scoreboard/scoreboard.component').then((mod) => mod.ScoreboardComponent),
   },
 ];

@@ -3,6 +3,8 @@ import { APP_INITIALIZER, inject, Injectable, Provider } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { filter, lastValueFrom, Observable, take } from 'rxjs';
 
+import { LocalStorageService } from '~core/services/local-storage.service';
+
 import { AuthState, AuthUser } from '../models/auth.model';
 import * as AuthActions from '../store/auth.actions';
 import { AuthFacade } from '../store/auth.facade';
@@ -23,12 +25,13 @@ export interface AccessData {
 export class AuthService {
   private readonly store = inject(Store);
   private readonly httpClient = inject(HttpClient);
+  private readonly localStorageService = inject(LocalStorageService);
   private readonly authFacade = inject(AuthFacade);
 
   // private readonly hostUrl = this.configService.getAPIUrl();
   // private readonly clientId = this.configService.getAuthSettings().clientId;
   // private readonly clientSecret = this.configService.getAuthSettings().secretId;
-  private readonly hostUrl = 'https://dummyjson.com';
+  private readonly hostUrl = 'https://api-gateway.iq.hdang09.tech';
 
   /**
    * Returns a promise that waits until
@@ -56,10 +59,9 @@ export class AuthService {
    * @returns Observable<AccessData>
    */
   login(username: string, password: string): Observable<AccessData> {
-    return this.httpClient.post<AccessData>(`${this.hostUrl}/auth/login`, {
-      username,
-      password,
-      expiresInMins: 1,
+    return this.httpClient.post<AccessData>(`${this.hostUrl}/user/register`, {
+      name: username,
+      studentID: password,
     });
   }
 
@@ -70,7 +72,9 @@ export class AuthService {
    * @returns {Observable<AuthUser>}
    */
   getAuthUser(): Observable<AuthUser> {
-    return this.httpClient.get<AuthUser>(`${this.hostUrl}/auth/me`);
+    const name = this.localStorageService.getItem('name');
+    const studentID = this.localStorageService.getItem('studentID');
+    return this.httpClient.get<AuthUser>(`${this.hostUrl}/user/start/${name}/${studentID}`);
   }
 
   /**

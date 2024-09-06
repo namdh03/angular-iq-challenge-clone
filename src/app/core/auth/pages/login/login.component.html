@@ -1,9 +1,73 @@
-<form [formGroup]="loginForm" (ngSubmit)="loginForm.valid && submit()">
-  <label for="">Username</label>
-  <input matInput type="text" formControlName="username" />
+@if (vm$ | async; as vm) {
+  <div class="content-wrapper">
+    @if (vm.isUserLoading) {
+      <app-loader-bell />
+    }
 
-  <label for="">Password</label>
-  <input matInput type="password" formControlName="password" />
+    <div class="logo-wrapper">
+      <img src="logo.svg" alt="" />
+      <span class="logo-text">F-Code</span>
+    </div>
 
-  <button mat-flat-button type="submit">Login</button>
-</form>
+    <h1 class="login-title">Nhập <b>MSSV</b> của bạn</h1>
+
+    <p class="login-desc">
+      Chấp nhận tham gia thử thách bằng cách điền mã số sinh viên và tra cứu kết quả sau khi hoàn thành
+    </p>
+
+    <form class="login-form" [formGroup]="loginForm" autocomplete="off" (ngSubmit)="submit()">
+      <div class="form-input-wrapper">
+        <span class="form-input-icon">
+          <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_64_221)">
+              <path
+                d="M10.7891 3.96004L15.5398 8.71079L5.2238 19.0268L0.988137 19.4944C0.421106 19.5571 -0.0579759 19.0777 0.00511005 18.5106L0.476399 14.272L10.7891 3.96004ZM18.4782 3.25274L16.2475 1.02209C15.5517 0.326294 14.4232 0.326294 13.7274 1.02209L11.6289 3.12063L16.3796 7.87137L18.4782 5.77284C19.174 5.07666 19.174 3.94854 18.4782 3.25274Z"
+                fill="#BDBDBD"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_64_221">
+                <rect width="19" height="19" fill="white" transform="translate(0 0.5)" />
+              </clipPath>
+            </defs>
+          </svg>
+        </span>
+        <input type="text" id="name" name="name" placeholder="Nguyen van a" formControlName="name" class="form-input" />
+      </div>
+      <div class="form-input-wrapper">
+        <span class="form-input-icon">
+          <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_64_221)">
+              <path
+                d="M10.7891 3.96004L15.5398 8.71079L5.2238 19.0268L0.988137 19.4944C0.421106 19.5571 -0.0579759 19.0777 0.00511005 18.5106L0.476399 14.272L10.7891 3.96004ZM18.4782 3.25274L16.2475 1.02209C15.5517 0.326294 14.4232 0.326294 13.7274 1.02209L11.6289 3.12063L16.3796 7.87137L18.4782 5.77284C19.174 5.07666 19.174 3.94854 18.4782 3.25274Z"
+                fill="#BDBDBD"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_64_221">
+                <rect width="19" height="19" fill="white" transform="translate(0 0.5)" />
+              </clipPath>
+            </defs>
+          </svg>
+        </span>
+        <input
+          type="text"
+          id="studentId"
+          name="studentId"
+          placeholder="se180000"
+          formControlName="studentId"
+          class="form-input"
+        />
+      </div>
+      <button class="btn form-btn" [disabled]="vm.isLoginLoading">
+        @if (vm.isLoginLoading) {
+          <app-loader-spinner class="form-loader" />
+        } @else {
+          Tiếp tục
+        }
+      </button>
+    </form>
+  </div>
+
+  <img src="login.png" alt="" width="685" height="448" />
+}

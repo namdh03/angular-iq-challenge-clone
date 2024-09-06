@@ -4,6 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, concat, exhaustMap, finalize, iif, lastValueFrom, map, of, switchMap, tap } from 'rxjs';
 
 import config from '~core/config';
+import { LocalStorageService } from '~core/services/local-storage.service';
 import { TokenStorageService } from '~core/services/token-storage.service';
 
 import { AuthService } from '../services/auth.service';
@@ -15,6 +16,7 @@ export class AuthEffects {
   private readonly router = inject(Router);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly actions$ = inject(Actions);
+  private readonly localStorageService = inject(LocalStorageService);
   private readonly tokenStorageService = inject(TokenStorageService);
   private readonly authService = inject(AuthService);
   private readonly authFacade = inject(AuthFacade);
@@ -23,11 +25,15 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(AuthActions.initAuth),
       exhaustMap(() => {
-        const accessToken = this.tokenStorageService.getAccessToken();
+        // const accessToken = this.tokenStorageService.getAccessToken();
+        const name = this.localStorageService.getItem('name');
+        const studentID = this.localStorageService.getItem('studentID');
 
         return iif(
           // Condition: If accessToken exists
-          () => !!accessToken,
+          // () => !!accessToken,
+          // Condition: If name and studentID exists
+          () => !!(name && studentID),
           // Observable to execute if condition is true
           this.authService.getAuthUser().pipe(
             switchMap((user) =>
@@ -47,9 +53,13 @@ export class AuthEffects {
       ofType(AuthActions.loginRequest),
       exhaustMap((credentials) =>
         this.authService.login(credentials.username, credentials.password).pipe(
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           map((data) => {
+            // Save name and studentID
+            this.localStorageService.setItem('name', credentials.username);
+            this.localStorageService.setItem('studentID', credentials.password);
             // save tokens
-            this.tokenStorageService.saveTokens(data.token, data.refreshToken);
+            // this.tokenStorageService.saveTokens(data.token, data.refreshToken);
             // trigger login success action
             return AuthActions.loginSuccess();
           }),

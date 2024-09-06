@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class LocalStorageService {
-  static readonly APP_PREFIX = 'IQ-CHALLENGE-AUTH--';
+  static readonly APP_PREFIX = '[IQ-CHALLENGE]::';
 
   /**
    * Sets item in local storage

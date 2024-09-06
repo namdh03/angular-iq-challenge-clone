@@ -10,7 +10,7 @@ export class AuthFacade {
 
   readonly auth$ = this.store.select(AuthSelectors.selectAuth);
   readonly isAuthenticated$ = this.store.select(AuthSelectors.selectIsAuthenticated);
-  readonly isLoadingLogin$ = this.store.select(AuthSelectors.selectIsLoginLoading);
+  readonly isLoginLoading$ = this.store.select(AuthSelectors.selectIsLoginLoading);
   readonly user$ = this.store.select(AuthSelectors.selectAuthUser);
   readonly isUserLoading$ = this.store.select(AuthSelectors.selectIsAuthUserLoading);
   readonly userError$ = this.store.select(AuthSelectors.selectAuthUserError);

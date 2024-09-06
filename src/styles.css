@@ -1,8 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
   --primary-color: #33bd64;
+  --secondary-color: #f9af0b;
+  --primary-text-color: ##21222d;
   --white-color: #fff;
   --text-light-color: #7b7b81;
+  --text-medium-color: #374141;
+  --input-background-color: #eee;
+  --input-text-color: #61626f;
+  --input-text-placeholder-color: #bdbdbd;
 }
 
 *,
@@ -37,17 +43,43 @@ a {
   text-decoration: none;
 }
 
-input,
-button,
-textarea,
-select {
-  font-family: inherit;
-  font-size: inherit;
-  color: inherit;
+button {
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0;
 }
 
-button {
+a,
+img,
+button,
+input,
+label,
+textarea,
+select {
+  padding: 0;
+  font-family: inherit;
+  color: inherit;
   outline: none;
   border: none;
+}
+
+input,
+textarea {
   background: transparent;
+}
+
+.btn {
+  --height: 54px;
+  min-width: 180px;
+  height: var(--height);
+  line-height: var(--height);
+  border-radius: 12px;
+  background: var(--primary-color);
+  color: #fff;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
 }
