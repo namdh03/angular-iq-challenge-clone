@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, concat, exhaustMap, finalize, iif, lastValueFrom, map, of, switchMap, tap } from 'rxjs';
 
+import config from '~core/config';
 import { TokenStorageService } from '~core/services/token-storage.service';
 
 import { AuthService } from '../services/auth.service';
@@ -67,7 +68,7 @@ export class AuthEffects {
           tap((data) => {
             if (data.user && data.isAuthenticated) {
               // redirect to return url or home
-              this.router.navigateByUrl(this.activatedRoute.snapshot.queryParams['returnUrl'] || '/', {
+              this.router.navigateByUrl(this.activatedRoute.snapshot.queryParams['returnUrl'] || config.routes.ready, {
                 replaceUrl: true,
               });
             }

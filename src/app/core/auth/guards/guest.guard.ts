@@ -12,6 +12,6 @@ export const guestGuard: CanMatchFn = () => {
 
   return authFacade.isAuthenticated$.pipe(
     take(1),
-    map((isAuthenticated) => (!isAuthenticated ? true : router.createUrlTree([config.routes.root]))),
+    map((isAuthenticated) => (!isAuthenticated ? true : router.createUrlTree([config.routes.ready]))),
   );
 };

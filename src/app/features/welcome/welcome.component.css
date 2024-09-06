@@ -1,0 +1,20 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.text {
+  margin: 42px 0;
+  max-width: 355px;
+  color: var(--text-light-color);
+  text-align: center;
+  font-size: 1.6rem;
+}
+
+.text-strong {
+  color: var(--primary-color);
+  font-weight: 700;
+}

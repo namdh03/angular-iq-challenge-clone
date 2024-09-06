@@ -1,9 +1,5 @@
-<p>welcome work!</p>
-@if (vm$ | async; as vm) {
-  @if (vm.user) {
-    <p>Hello, {{ vm.user.id }}</p>
-  } @else {
-    <p>{{ vm.userError?.error.message }}</p>
-    <a routerLink="/login">Login</a>
-  }
-}
+<img src="logo.svg" alt="" />
+<p class="text">
+  Chào mừng các bạn tân sinh viên K18 đến với <strong class="text-strong">IQ Challenge</strong> do CLB F-Code tổ chức
+</p>
+<app-button [routerLink]="['/', config.routes.login]">Bắt đầu</app-button>
