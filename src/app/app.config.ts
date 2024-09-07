@@ -3,6 +3,7 @@ import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
+import { provideAngularQuery, QueryClient } from '@tanstack/angular-query-experimental';
 
 import { authInterceptor } from '~core/auth/interceptors/auth.interceptor';
 import { authServiceInitProvider } from '~core/auth/services/auth.service';
@@ -16,6 +17,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(withInterceptors([authInterceptor])),
+    provideAngularQuery(new QueryClient()),
     provideStore({ auth: authReducer }),
     provideEffects([AuthEffects]),
     authServiceInitProvider,

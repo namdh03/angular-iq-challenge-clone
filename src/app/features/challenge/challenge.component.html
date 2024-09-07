@@ -1,1 +1,54 @@
-<p>challenge works!</p>
+<aside class="sidebar">
+  <header class="header">
+    <app-logo />
+  </header>
+  <div class="item">
+    <h2 class="title">Thời gian</h2>
+    <div class="timer">
+      <img src="timer-secondary.svg" alt="Outline timer" />
+      <img src="timer-primary.svg" alt="Background timer" />
+      <div></div>
+      @if (timer$ | async; as time) {
+        <span>{{ time }}</span>
+      }
+    </div>
+  </div>
+  <div class="item questions-wrapper">
+    <h2 class="title">Câu hỏi</h2>
+    <div class="questions">
+      @if (challenges.isFetching()) {
+        <app-loader-progress />
+      } @else {
+        @for (question of challenges.data()?.questions; track question.id) {
+          <a
+            [href]="config.routes.challenge + '#' + question.id.toString()"
+            class="question"
+            [class.active]="onGetAnswerByQID(question.id)"
+          >
+            {{ $index + 1 }}
+          </a>
+        }
+      }
+    </div>
+  </div>
+  <div class="item">
+    <button class="btn challenge-btn-submit">Nộp bài</button>
+    <p>Kiểm tra bài làm kĩ trước khi nộp</p>
+  </div>
+</aside>
+
+<div class="container">
+  @if (challenges.isFetching()) {
+    <app-loader-wobbling />
+  } @else {
+    @for (question of challenges.data()?.questions; track question.id) {
+      <app-question
+        [id]="question.id"
+        [questionNumber]="$index + 1"
+        [question]="question.question"
+        [multipleChoice]="question.multipleChoice"
+        [isLong]="question.isLong"
+      />
+    }
+  }
+</div>

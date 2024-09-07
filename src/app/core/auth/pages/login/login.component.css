@@ -46,14 +46,19 @@
   padding: 16px 23px 16px 59px;
   border-radius: 12px;
   color: var(--input-text-color);
-  background: var(--input-background-color);
+  background: var(--primary-background-color);
   font-size: 2rem;
   font-weight: 500;
   text-transform: uppercase;
+  border: 1px solid transparent;
+}
+
+.form-input-wrapper:not(:has(:placeholder-shown)) .form-input {
+  border-color: var(--primary-color);
 }
 
 .form-input::placeholder {
-  color: var(--input-text-placeholder-color);
+  color: var(--text-placeholder-color);
 }
 
 .form-btn {

@@ -1,0 +1,31 @@
+<div [id]="id().toString()" class="wrapper">
+  <div class="question">
+    <h2 class="title">Câu hỏi số {{ questionNumber() }}</h2>
+    @for (item of question(); track $index) {
+      @if (item.startsWith('/images/')) {
+        <img [ngSrc]="item" alt="Quiz image" priority width="400" height="500" />
+      } @else {
+        @if (isLong()) {
+          <p>{{ item }}</p>
+        } @else {
+          <h3>{{ item }}</h3>
+        }
+      }
+    }
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="answers-list">
+    @for (item of multipleChoice(); track $index) {
+      <button
+        class="answers-item"
+        [class.active]="onGetAnswerByQID()?.answer === $index + 1"
+        (click)="onChoiceAnswer(id(), $index + 1)"
+      >
+        <span>{{ choices[$index] }}</span>
+        <p>{{ item }}</p>
+      </button>
+    }
+  </div>
+</div>

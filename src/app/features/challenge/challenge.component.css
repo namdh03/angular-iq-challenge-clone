@@ -1,0 +1,135 @@
+:host {
+  display: flex;
+  background: var(--question-background-color);
+}
+
+.container {
+  margin-left: 375px;
+  padding: 20px 0;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  width: 375px;
+  height: 100vh;
+  border: 1px solid var(--input-background-color);
+  background-color: var(--white-color);
+  box-shadow:
+    0px 3px 3px rgba(0, 0, 0, 0.035),
+    0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725),
+    0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--divider-background-color);
+}
+
+.item {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  padding: 32px;
+  border-top: 1px solid var(--input-background-color);
+}
+
+.item > p {
+  text-align: center;
+  margin-bottom: 12px;
+  color: var(--black-color);
+}
+
+.item > p {
+  margin-top: 20px;
+  color: var(--text-placeholder-color);
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-top: 26px;
+  width: 142px;
+  height: 142px;
+}
+
+.timer img {
+  position: absolute;
+}
+
+.timer div {
+  position: absolute;
+  width: 106px;
+  height: 106px;
+  border-radius: 1000px;
+  background-color: var(--timer-background-color);
+}
+
+.timer span {
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 24px;
+  text-align: center;
+  color: var(--primary-color);
+  z-index: 1;
+}
+
+.questions-wrapper {
+  border: 1px solid var(--divider-background-color);
+  border-left: transparent;
+  border-right: transparent;
+}
+
+.questions {
+  margin-top: 14px;
+  width: 250px;
+  max-height: 150px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 114px;
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 24px;
+  text-align: center;
+  cursor: pointer;
+  color: var(--text-placeholder-color);
+}
+
+.question:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.question.active {
+  color: var(--primary-color);
+}
+
+.challenge-btn-submit {
+  width: 100%;
+}
