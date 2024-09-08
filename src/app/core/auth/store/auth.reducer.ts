@@ -46,6 +46,13 @@ const reducer = createReducer(
       isLoginLoading: false,
     }),
   ),
+  on(
+    AuthActions.loginFailure,
+    (state): AuthState => ({
+      ...state,
+      isLoginLoading: false,
+    }),
+  ),
 
   // Auth user
   on(
@@ -78,6 +85,7 @@ const reducer = createReducer(
     AuthActions.logout,
     (): AuthState => ({
       ...initialState,
+      isInitialized: true,
     }),
   ),
 );

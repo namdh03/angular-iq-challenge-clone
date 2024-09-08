@@ -32,7 +32,13 @@
     </div>
   </div>
   <div class="item">
-    <button class="btn challenge-btn-submit">Nộp bài</button>
+    <button class="btn challenge-btn-submit" (click)="onSubmitChallenge()" [disabled]="challenges.isFetching()">
+      @if (mutation.isPending() || challenges.isFetching()) {
+        <app-loader-spinner class="challenge-loader" />
+      } @else {
+        Nộp bài
+      }
+    </button>
     <p>Kiểm tra bài làm kĩ trước khi nộp</p>
   </div>
 </aside>
@@ -44,6 +50,7 @@
     @for (question of challenges.data()?.questions; track question.id) {
       <app-question
         [id]="question.id"
+        [index]="$index"
         [questionNumber]="$index + 1"
         [question]="question.question"
         [multipleChoice]="question.multipleChoice"

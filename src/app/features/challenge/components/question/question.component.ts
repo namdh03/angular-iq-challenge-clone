@@ -16,6 +16,7 @@ export class QuestionComponent {
   answers = this.challengeService.answers;
 
   id = input.required<number>();
+  index = input.required<number>();
   choices = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
   questionNumber = input.required<number>();
   question = input.required<string[]>();
@@ -23,7 +24,7 @@ export class QuestionComponent {
   isLong = input.required<boolean>();
 
   onChoiceAnswer(id: number, answer: number) {
-    this.challengeService.choiceAnswer(id, answer);
+    this.challengeService.choiceAnswer(id, answer, this.index());
   }
 
   onGetAnswerByQID() {

@@ -94,7 +94,10 @@ export class AuthEffects {
     () => {
       return this.actions$.pipe(
         ofType(AuthActions.loginFailure),
-        tap(() => {
+        tap((error) => {
+          alert(error.error.error?.message);
+          this.localStorageService.removeItem('name');
+          this.localStorageService.removeItem('studentID');
           this.tokenStorageService.removeTokens();
         }),
       );
@@ -119,7 +122,7 @@ export class AuthEffects {
       return this.actions$.pipe(
         ofType(AuthActions.logout),
         exhaustMap(() => {
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl(config.routes.root);
           return this.authService.logout().pipe(finalize(() => this.tokenStorageService.removeTokens()));
         }),
       );

@@ -1,0 +1,81 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 180px;
+  height: 100%;
+}
+
+.content-wrapper {
+  max-width: 500px;
+}
+
+.result-title {
+  margin-top: 22px;
+}
+
+.result-title strong {
+  color: var(--primary-color);
+}
+
+.result-description {
+  margin-top: 44px;
+}
+
+.result-description p {
+  color: var(--result-description-color);
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.result-list {
+  margin-top: 11px;
+}
+
+.result-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 15px 17px 10px;
+  border-top: 1px solid var(--divider-background-color);
+  border-bottom: 1px solid var(--divider-background-color);
+}
+
+.result-item span:first-child {
+  color: var(--black-color);
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.result-item span:last-child {
+  color: var(--primary-color);
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.result-item span b {
+  color: var(--result-total-questions-color);
+}
+
+.club-info {
+  margin-top: 33px;
+}
+
+.club-info p {
+  color: var(--text-light-color);
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.club-link {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  gap: 19px;
+}
+
+.club-link span {
+  color: var(--text-light-color);
+  font-size: 1.5rem;
+  font-weight: 500;
+}

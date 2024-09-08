@@ -35,9 +35,4 @@ export const routes: Routes = [
     canMatch: [authGuard],
     loadComponent: () => import('./features/result/result.component').then((mod) => mod.ResultComponent),
   },
-  {
-    path: config.routes.scoreboard,
-    canMatch: [authGuard],
-    loadComponent: () => import('./features/scoreboard/scoreboard.component').then((mod) => mod.ScoreboardComponent),
-  },
 ];

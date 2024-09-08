@@ -1,1 +1,52 @@
-<p>result works!</p>
+@if (result.isFetching()) {
+  <app-loader-wobbling />
+} @else {
+  <img src="result.png" alt="" width="450" height="450" />
+
+  <div class="content-wrapper">
+    <app-logo />
+
+    <h1 class="title result-title">Chúc mừng bạn đã hoàn thành thử thách <strong>IQ Challenge</strong></h1>
+
+    <div class="result-description">
+      <p>Kết quả bạn đã đạt được:</p>
+
+      <ul class="result-list">
+        <li class="result-item">
+          <span>Thời gian hoàn thành</span>
+          <span>{{ covertFormatTime() }}</span>
+        </li>
+        <li class="result-item">
+          <span>Số câu trả lời đúng</span>
+          <span>{{ result.data()?.score }}<b>/15</b></span>
+        </li>
+        <li class="result-item">
+          <span>Vị trí xếp hạng</span>
+          <span><a href="https://iq.hdang09.tech/rank">Xem BXH</a></span>
+        </li>
+      </ul>
+
+      <div class="club-info">
+        <p>Tìm hiểu thêm về CLB tại:</p>
+        <a href="https://www.facebook.com/fcodefpt" class="club-link">
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+              <g clip-path="url(#clip0_70_694)">
+                <path
+                  d="M24.6094 12.5C24.6094 5.81055 19.1895 0.390625 12.5 0.390625C5.81055 0.390625 0.390625 5.81055 0.390625 12.5C0.390625 18.5439 4.81885 23.5537 10.6079 24.4629V16.0005H7.53174V12.5H10.6079V9.83203C10.6079 6.79736 12.4146 5.12109 15.1816 5.12109C16.5068 5.12109 17.8926 5.35742 17.8926 5.35742V8.33594H16.3652C14.8613 8.33594 14.3921 9.26953 14.3921 10.2271V12.5H17.7505L17.2134 16.0005H14.3921V24.4629C20.1812 23.5537 24.6094 18.5439 24.6094 12.5Z"
+                  fill="#5599FF"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_70_694">
+                  <rect width="25" height="25" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </span>
+          <span>Facebook fanpage F-Code</span>
+        </a>
+      </div>
+    </div>
+  </div>
+}

@@ -133,3 +133,8 @@
 .challenge-btn-submit {
   width: 100%;
 }
+
+.challenge-loader {
+  display: flex;
+  justify-content: center;
+}
