@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { effect, inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, lastValueFrom, map, of, switchMap, tap, timer } from 'rxjs';
+import { BehaviorSubject, catchError, lastValueFrom, map, of, switchMap, tap, throwError, timer } from 'rxjs';
 
 import config from '~core/config';
 import { LocalStorageService } from '~core/services/local-storage.service';
@@ -79,6 +79,10 @@ export class ChallengeService {
       this.httpClient.get<ChallengeResponse>(`${this.hostUrl}/user/start/${this.name}/${this.studentID}`).pipe(
         tap(() => {
           this.startTimer$.next(true);
+        }),
+        catchError((error) => {
+          this.startTimer$.next(false);
+          return throwError(() => error);
         }),
       ),
     );

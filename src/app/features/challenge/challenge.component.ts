@@ -1,6 +1,6 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, effect, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { injectMutation, injectQuery } from '@tanstack/angular-query-experimental';
 
 import config from '~core/config';
@@ -29,14 +29,24 @@ import { QuestionComponent } from './components/question/question.component';
 })
 export class ChallengeComponent {
   readonly config = config;
+  private readonly router = inject(Router);
   private readonly challengeService = inject(ChallengeService);
   timer$ = this.challengeService.timer$;
+
+  constructor() {
+    effect(() => {
+      if (this.challenges.isError()) {
+        this.router.navigate([config.routes.welcome]);
+      }
+    });
+  }
 
   challenges = injectQuery(() => ({
     queryKey: ['challenge-questions'],
     queryFn: () => this.challengeService.getChallenges(),
     select: (data) => data.data,
     refetchOnWindowFocus: false,
+    retry: false,
   }));
 
   mutation = injectMutation(() => ({

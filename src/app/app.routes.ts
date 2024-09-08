@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 
 import { authGuard } from '~core/auth/guards/auth.guard';
 import { guestGuard } from '~core/auth/guards/guest.guard';
+import { resultGuard } from '~features/result/result.guard';
 
 import config from './core/config';
 
@@ -33,6 +34,7 @@ export const routes: Routes = [
   {
     path: config.routes.result,
     canMatch: [authGuard],
+    canDeactivate: [resultGuard],
     loadComponent: () => import('./features/result/result.component').then((mod) => mod.ResultComponent),
   },
 ];
